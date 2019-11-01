@@ -1,0 +1,52 @@
+name:                serverless-haskell-example
+category:            AWS, Cloud, Network
+maintainer:          akotlyarov@seek.com.au
+version:             1.0.0
+github:              seek-oss/serverless-haskell
+license:             MIT
+synopsis:            Deploying Haskell code onto AWS Lambda using Serverless
+description:         Example package to demonstrate deployment of Haskell code onto AWS Lambda using Serverless
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs:
+    - src
+  exposed-modules:
+    - Lib
+    - Database
+    - ServantShim
+  dependencies:
+    - aeson
+    - amazonka-core
+    - beam-core
+    - beam-mysql
+    - bytestring
+    - http-types
+    - lens
+    - mysql
+    - protolude
+    - servant-server
+    - serverless-haskell
+    - strict-concurrency
+    - text
+    - wai
+    - warp
+
+executables:
+  apigw:
+    main:                Main.hs
+    source-dirs:         apigw-app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - aeson
+    - lens
+    - servant-server
+    - serverless-haskell
+    - serverless-haskell-example
+    - text
+    - unordered-containers

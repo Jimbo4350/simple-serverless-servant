@@ -1,0 +1,69 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 851a506b40eeab830f184a3a4e07e6eb1cc97c9f21405d5c7af6e02e056f44a7
+
+name:           serverless-haskell-example
+version:        1.0.0
+synopsis:       Deploying Haskell code onto AWS Lambda using Serverless
+description:    Example package to demonstrate deployment of Haskell code onto AWS Lambda using Serverless
+category:       AWS, Cloud, Network
+homepage:       https://github.com/seek-oss/serverless-haskell#readme
+bug-reports:    https://github.com/seek-oss/serverless-haskell/issues
+maintainer:     akotlyarov@seek.com.au
+license:        MIT
+license-file:   LICENSE
+build-type:     Simple
+
+source-repository head
+  type: git
+  location: https://github.com/seek-oss/serverless-haskell
+
+library
+  exposed-modules:
+      Lib
+      Database
+      ServantShim
+  other-modules:
+      Paths_serverless_haskell_example
+  hs-source-dirs:
+      src
+  build-depends:
+      aeson
+    , amazonka-core
+    , base >=4.7 && <5
+    , beam-core
+    , beam-mysql
+    , bytestring
+    , http-types
+    , lens
+    , mysql
+    , protolude
+    , servant-server
+    , serverless-haskell
+    , strict-concurrency
+    , text
+    , wai
+    , warp
+  default-language: Haskell2010
+
+executable apigw
+  main-is: Main.hs
+  other-modules:
+      Paths_serverless_haskell_example
+  hs-source-dirs:
+      apigw-app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , base >=4.7 && <5
+    , lens
+    , servant-server
+    , serverless-haskell
+    , serverless-haskell-example
+    , text
+    , unordered-containers
+  default-language: Haskell2010

@@ -1,0 +1,21 @@
+org: jimbo4350
+app: minimal-example-rds
+service: serverless-minimal-example-rds
+
+provider:
+  name: aws
+  runtime: haskell
+  region: ap-southeast-2
+  timeout: 100
+
+functions:
+  apigw:
+    handler: serverless-haskell-example.api-exe
+    events:
+      - http:
+          path: item/test
+          method: get
+
+plugins:
+  - serverless-haskell
+  - serverless-offline
